@@ -12,15 +12,59 @@
                         </a>
                         <div class="price">{{product.unitPrice|currency:"USD"}}</div>
                         <p class="card-text text-truncate">{{product.description}}</p>
-                        <a href="#" class="primary-btn">Add to Cart</a>
+                        <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
                     </div>
                 </div>
                 <div *ngIf="products?.length==0">
                     <p style="color:darkred" align="center">No Books Found. Enter valid keywords inorder to search products and try again in order to effecticently use search functionality</p>
                 </div>
+            
+            </div>
+
+            <div class="footer-pagination">
+               
+                <div class="row">
+
+                    <!-- page size drop down selection -->
+                    <div class="col-md-6">
               
-         </div>
-        
-    </div>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <span style="color:aqua">Page Size: </span>
+                        </div>
+                        <div class="col-md-9">
+                          <select (change)="updatePageSize($event.target.value)"
+                                  class="form-control-sm">
+                            <option>6</option>
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                          </select>
+                        </div>
+                      </div>
+                     
+                    </div>
+              
+                    <!-- pagination component -->
+                    <div class="col-md-6">
+                      
+                      <!-- client side paging -->
+                      <!-- <jw-pagination [items]="books" (changePage)="onChangePage($event)"></jw-pagination> -->
+              
+                      <ngb-pagination [(page)]="thePageNumber"
+                                      [pageSize]="itemsize" 
+                                      [collectionSize]="theTotalElements"
+                                      (pageChange)="listProducts()"
+                                      class="d-flex justify-content-end">
+                          <ng-template ngbPaginationFirst>First</ng-template>
+                          <ng-template ngbPaginationLast>Last</ng-template> 
+                          <ng-template ngbPaginationPrevious>Prev</ng-template>
+                          <ng-template ngbPaginationNext>Next</ng-template> 
+                                      
+                      </ngb-pagination>
+                    </div>
+              
+                  </div>
+        </div>
     </div>
 </div>
