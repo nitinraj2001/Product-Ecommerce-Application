@@ -13,6 +13,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxSpinnerModule} from 'ngx-spinner'
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

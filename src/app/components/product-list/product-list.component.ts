@@ -5,6 +5,7 @@ import { Product } from 'src/app/common/product';
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/common/cart-item';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-list',
@@ -21,7 +22,7 @@ export class ProductListComponent implements OnInit {
   thePageNumber: number = 1;
   theTotalElements: number = 0;
 
-  constructor(private productService: ProductService,private cartservice: CartService, private router :ActivatedRoute,private config:NgbPaginationConfig) {
+  constructor(private productService: ProductService,private cartservice: CartService, private router :ActivatedRoute,private config:NgbPaginationConfig,private ngxservice: NgxSpinnerService) {
     config.maxSize=3;
     config.boundaryLinks=true;
    }
@@ -31,6 +32,8 @@ export class ProductListComponent implements OnInit {
     this.router.paramMap.subscribe(()=>this.listProducts())
   }
   listProducts(){
+
+    this.ngxservice.show();
 
     const searchStatus : boolean=this.router.snapshot.paramMap.has('keyword');
 
@@ -84,6 +87,7 @@ export class ProductListComponent implements OnInit {
 
   processResult() {
     return data => {
+      this.ngxservice.hide();
       this.products = data._embedded.products;
       this.thePageNumber = data.page.number + 1;
       this.itemsize = data.page.size;
