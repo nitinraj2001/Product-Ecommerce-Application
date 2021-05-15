@@ -1,0 +1,81 @@
+<div class="col-md-9 default" >
+    <div class="row">
+        <div class="col-md-12">
+            <div *ngIf="cartItems?.length>0">
+
+                <table class="table table-bordered center">
+                    <thead style="background-color:darkgrey; text-decoration:white;">
+                        <tr>
+                            <td width="20%">Product Image</td>
+                            <td width="50%">Product Details </td>
+                            <td width="30%"></td>
+                        </tr>
+                         
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cartitem of cartItems">
+                            <td><img [src]="cartitem.imageUrl" class="img-responsive"></td>
+                            <td>
+                                <p align="justify">Crash course in python</p><br>
+                                <p>{{cartitem.unitPrice |currency:'USD'}}</p>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Quantity:
+                                            <span (click)="remove(cartitem)" class="float-right text-danger " >
+                                                <i class="fas fa-trash-alt pointer"></i>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary btn-sm float-left" (click)=incrementQuantity(cartitem)>
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4" text-align="center">
+                                        {{cartitem.quantity}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary btn-sm float-right" (click)=decrementQuantity(cartitem)>
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                      <p>Subtotal:{{cartitem.quantity*cartitem.unitPrice |currency:'USD'}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td class="font-weight-bold">
+                               <p>TotalQuantity: {{totalQuantity}}</p>
+                               <p>Shipping: Free</p>
+                               <p>Total Price: {{totalPrice |currency:'USD'}} </p> 
+                               <button type="button" class="btn btn-primary btn-block">go to checkout</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div *ngIf="cartItems.length==0">
+                <div class="container-fluid mt-100">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body cart">
+                                    <div class="col-sm-12 empty-cart-cls text-center"> <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                        <h3><strong>Your Cart is Empty</strong></h3>
+                                        <h4>Add something to make me happy :)</h4> <a routerLink="/products" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

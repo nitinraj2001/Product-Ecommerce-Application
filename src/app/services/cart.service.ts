@@ -50,4 +50,23 @@ export class CartService {
 
     console.log(`total price in cart is :${totalPriceValue} and total quantity in cart is :${totalQuantityValue}`)
   }
+
+  decrementQuantity(cartItem: CartItem) {
+    cartItem.quantity--;
+    if(cartItem.quantity==0){
+      this.remove(cartItem);
+    }
+    this.calculateTotalPrice();
+  }
+
+  remove(cartItem: CartItem){
+
+    const cartItemIndex=this.cartItem.findIndex((tempCartItem)=>tempCartItem.id==cartItem.id);
+
+    if(cartItemIndex>-1){
+      this.cartItem.splice(cartItemIndex,1);
+      this.calculateTotalPrice();
+    }
+
+  }
 }

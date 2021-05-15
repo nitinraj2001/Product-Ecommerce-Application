@@ -1,0 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+  .default{
+    margin-top: 5%;
+    padding-top: 30px;
+    margin-left: auto; 
+    margin-right: auto;
+  }
+
+  
+  .pointer{
+    cursor: pointer;
+  }
